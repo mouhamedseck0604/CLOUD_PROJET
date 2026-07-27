@@ -48,29 +48,29 @@ jobs:
 
             # Configuration de Nginx
             sudo tee /etc/nginx/sites-available/default > /dev/null << EOL
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /home/$EC2_USER/var/www/html;
-    index index.php index.html index.htm;
-
-    server_name _;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-
-    location ~ \.php\$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass $PHP_FPM_SOCK;
-    }
-
-    location ~ /\.ht {
-        deny all;
-    }
-}
-EOL
+            server {
+                listen 80 default_server;
+                listen [::]:80 default_server;
+            
+                root /home/$EC2_USER/var/www/html;
+                index index.php index.html index.htm;
+            
+                server_name _;
+            
+                location / {
+                    try_files \$uri \$uri/ =404;
+                }
+            
+                location ~ \.php\$ {
+                    include snippets/fastcgi-php.conf;
+                    fastcgi_pass $PHP_FPM_SOCK;
+                }
+            
+                location ~ /\.ht {
+                    deny all;
+                }
+            }
+            EOL
 
             # Redémarrage et activation des services
             sudo systemctl restart nginx
