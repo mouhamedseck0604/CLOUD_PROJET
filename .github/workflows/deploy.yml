@@ -39,8 +39,7 @@ jobs:
             
             # Mise à jour et installation de Nginx, PHP et MariaDB
             sudo apt install -y nginx php-fpm php-mysql
-            sudo cp -r ./* /var/www/html/
-
+          
             # Détection automatique de la version PHP installée
             PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
             PHP_FPM_SOCK="unix:/var/run/php/php${PHP_VERSION}-fpm.sock"
@@ -51,7 +50,7 @@ jobs:
                 listen 80 default_server;
                 listen [::]:80 default_server;
             
-                root /var/www/html;
+                root /home/ubuntu/app;
                 index index.php index.html index.htm;
             
                 server_name _;
