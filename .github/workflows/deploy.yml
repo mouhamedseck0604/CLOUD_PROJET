@@ -1,4 +1,4 @@
-# cicd.yml ####
+# cicd.yml #####
 name: Deploy PHP App to EC2
 
 on:
