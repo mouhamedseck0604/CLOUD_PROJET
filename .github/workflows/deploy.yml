@@ -26,6 +26,7 @@ jobs:
 
       - name: Copy project to EC2 (SCP)
         run: |
+          ssh -i ~/.ssh/id_rsa $EC2_USER@$EC2_HOST "mkdir -p /home/$EC2_USER/app"
           scp -i ~/.ssh/id_rsa -r ./ $EC2_USER@$EC2_HOST:/home/$EC2_USER/app
         env:
           EC2_USER: ${{ secrets.EC2_USER }}
